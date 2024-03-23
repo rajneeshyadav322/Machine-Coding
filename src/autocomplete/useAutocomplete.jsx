@@ -6,6 +6,7 @@ const useAutocomplete = (countries) => {
     const [suggestions, setSuggestions] = useState(countries)
     const [suggestionFocus, setSuggestionFocus] = useState(null)
     const [userInput, setUserInput] = useState("")
+    const [showSuggestions, setShowSuggestions] = useState(false)
 
     const handleSuggestionFocus = (index) => {
         setSuggestionFocus(index)
@@ -13,19 +14,20 @@ const useAutocomplete = (countries) => {
 
     const handleClick = (selectedSuggestion) => {
         setUserInput(selectedSuggestion)
-        setSuggestions([])
+        setShowSuggestions(false)
         setSuggestionFocus(null)
     }
     
     const handleInput = (e) => {
         setUserInput(e.target.value)
-        setSuggestions(() => suggestions.filter(s => s.includes(e.target.value)))
+        setShowSuggestions(true)
+        setSuggestions(() => countries.filter(country => country.toLowerCase().includes(e.target.value.toLowerCase())))
     }
 
     const handleKeyDown = (e) => {
 
         if(e.key === "Enter" && suggestionFocus !== null) {
-            setSuggestions([])
+            setShowSuggestions(false)
             setSuggestionFocus(null) 
             setUserInput(suggestions[suggestionFocus])
         }
@@ -57,7 +59,9 @@ const useAutocomplete = (countries) => {
         suggestions,
         suggestionFocus,
         userInput,
+        showSuggestions,
         handleInput,
+        setShowSuggestions,
         handleKeyDown,
         handleSuggestionFocus,
         handleClick,

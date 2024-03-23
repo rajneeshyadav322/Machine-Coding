@@ -3,19 +3,9 @@ import styles from './autocomplete.module.css'
 import useAutocomplete from './useAutocomplete'
 import { countries } from './countries'
 
-const Item = ({ children }) => {
-  return <div className='selected-item'>
-    {children}
-    <span className='close'>x</span>
-  </div>
-}
-
 const Autocomplete = () => {
 
-  const inputRef = useRef("")
-
-  const {suggestions, userInput, suggestionFocus, handleKeyDown, handleSuggestionFocus, handleClick, handleInput} = useAutocomplete(countries)
-
+  const { showSuggestions, suggestions, setShowSuggestions, userInput, suggestionFocus, handleKeyDown, handleSuggestionFocus, handleClick, handleInput } = useAutocomplete(countries)
 
   return (
     <div className={styles.main}>
@@ -23,7 +13,7 @@ const Autocomplete = () => {
       <div className={styles.autocomplete}>
         <input
           value={userInput}
-          ref={inputRef}
+          onFocus={() => setShowSuggestions(true)}
           onChange={handleInput}
           onKeyDown={handleKeyDown}
           spellCheck="false"
@@ -32,20 +22,25 @@ const Autocomplete = () => {
           type='search'
         />
 
-        <ul className={styles.suggestions}>
-          {
-            suggestions?.map((suggestion, ind) => (
-              <li
-                className={suggestionFocus === ind ? styles.highlight : ""}
-                onMouseOver={() => handleSuggestionFocus(ind)}
-                onMouseLeave={() => handleSuggestionFocus(null)}
-                onClick={() => handleClick(suggestion)}
-              >
-                {suggestion}
-              </li>)
-            )
-          }
-        </ul>
+        {showSuggestions &&
+          <ul className={styles.suggestions}>
+            {
+              suggestions.length > 0 ? suggestions?.map((suggestion, ind) => (
+                <li
+                  key={ind}
+                  className={userInput === suggestion ? styles.selected : suggestionFocus === ind ? styles.highlight : ""}
+                  onMouseOver={() => handleSuggestionFocus(ind)}
+                  onMouseLeave={() => handleSuggestionFocus(null)}
+                  onClick={() => handleClick(suggestion)}
+                >
+                  {suggestion}
+                </li>)
+              )
+                :
+                <p>No Options</p>
+            }
+          </ul>
+        }
       </div>
     </div>
   )
