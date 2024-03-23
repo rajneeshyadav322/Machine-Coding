@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    padding: 0rem;
+    margin: 0rem;
+}
+
+.main {
+    margin: 2rem;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+input {
+    width: 94%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.selected-item {
+    margin: 0.25rem;
+    background-color: rgb(184, 149, 218);
+    border-radius: 0.5rem;
+    padding: 0rem 0.5rem;
+    width: max-content;
+
+    color: white;
+}
+
+.suggestions {    
+    background-color: white;
+    height: 8rem;    
+    width: 100%;
+    overflow: scroll;
+}
+
+.suggestions li {
+    padding: 0.25rem
+}
+
+li.highlight {
+    background-color: khaki;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
