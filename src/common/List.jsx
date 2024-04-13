@@ -6,6 +6,9 @@ const data = [{
 }, {
     path: "/autocomplete",
     name: "Autocomplete"
+}, {
+    path: "selectable-grid",
+    name: "Selectable Grid"
 }]
 
 const List = () => {
@@ -13,7 +16,7 @@ const List = () => {
     return (
         <>
             {data?.map((component) => (
-                <div>
+                <div key={component.name}>
                     <a href={component.path}>{component.name}</a>
                 </div>))
             }

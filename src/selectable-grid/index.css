@@ -1,0 +1,26 @@
+.title {
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    width: max-content;
+    margin: auto;
+    margin-top: 1rem;
+    border: 1px solid black;
+    grid-template-columns: repeat(var(--cols, 10), 2.5rem);
+    grid-template-rows: repeat(var(--rows, 10), 2.5rem);
+    user-select: none;
+}
+
+.grid-item{
+    padding: 0.5rem;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected {
+    background-color: pink;
+}

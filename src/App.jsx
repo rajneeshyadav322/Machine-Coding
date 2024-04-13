@@ -6,6 +6,7 @@ import List from './common/List'
 
 const Pagination = lazy(() => import('./pagination/Pagination'))
 const Autocomplete = lazy(() => import('./autocomplete/Autocomplete'))
+const SelectableGrid = lazy(() => import('./selectable-grid/SelectableGrid'))
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" element={<List/>} />
           <Route path='/pagination' element={<Pagination />} />
           <Route path='/autocomplete' element={<Autocomplete />} />
+          <Route path='/selectable-grid' element={<SelectableGrid />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

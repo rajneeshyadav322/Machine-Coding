@@ -14,8 +14,8 @@ const useAutocomplete = (countries) => {
 
     const handleClick = (selectedSuggestion) => {
         setUserInput(selectedSuggestion)
-        setShowSuggestions(false)
         setSuggestionFocus(null)
+        setShowSuggestions(false)
     }
     
     const handleInput = (e) => {

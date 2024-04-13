@@ -1,17 +1,36 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './autocomplete.module.css'
 import useAutocomplete from './useAutocomplete'
 import { countries } from './countries'
 
 const Autocomplete = () => {
 
+  const inputRef = useRef()
+
   const { showSuggestions, suggestions, setShowSuggestions, userInput, suggestionFocus, handleKeyDown, handleSuggestionFocus, handleClick, handleInput } = useAutocomplete(countries)
+
+  useEffect(() => {
+
+    const handleOutsideClick = (e) => {
+      if(inputRef.current && !inputRef.current.contains(e.target)) {
+        setShowSuggestions(false)
+        console.log("clicked outside")
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick)
+    }
+  }, [inputRef.current])
 
   return (
     <div className={styles.main}>
       <p>Use up and down arrow to navigate suggestions</p>
       <div className={styles.autocomplete}>
         <input
+          ref={inputRef}
           value={userInput}
           onFocus={() => setShowSuggestions(true)}
           onChange={handleInput}
