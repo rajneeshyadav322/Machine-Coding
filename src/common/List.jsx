@@ -1,15 +1,25 @@
 import React from 'react'
+import {paths} from '../config/paths'
 
-const data = [{
-    name: "Pagination",
-    path: "/pagination"
-}, {
-    path: "/autocomplete",
-    name: "Autocomplete"
-}, {
-    path: "selectable-grid",
-    name: "Selectable Grid"
-}]
+export const data = [
+    {
+        name: paths.PAGINATION,
+        path: "/pagination"
+    },
+    {
+        path: paths.AUTOCOMPLETE,
+        name: "Autocomplete"
+    },
+    {
+        path: paths.SELECTABLE_GRID,
+        name: "Selectable Grid"
+    },
+    {
+        path: paths.BREADCRUMB,
+        name: "Breadcrumb"
+    }
+]
+
 
 const List = () => {
 

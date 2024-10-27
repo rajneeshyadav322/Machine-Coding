@@ -3,10 +3,12 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Loader from './common/Loader'
 import List from './common/List'
+import { paths } from './config/paths'
 
 const Pagination = lazy(() => import('./pagination/Pagination'))
 const Autocomplete = lazy(() => import('./autocomplete/Autocomplete'))
 const SelectableGrid = lazy(() => import('./selectable-grid/SelectableGrid'))
+const Breadcrumb = lazy(() => import('./breadcrumb/Breadcrumb'))
 
 const App = () => {
   return (
@@ -14,9 +16,10 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<List/>} />
-          <Route path='/pagination' element={<Pagination />} />
-          <Route path='/autocomplete' element={<Autocomplete />} />
-          <Route path='/selectable-grid' element={<SelectableGrid />} />
+          <Route path={paths.PAGINATION} element={<Pagination />} />
+          <Route path={paths.AUTOCOMPLETE} element={<Autocomplete />} />
+          <Route path={paths.SELECTABLE_GRID} element={<SelectableGrid />} />
+          <Route path={`${paths.BREADCRUMB}/*`} element={<Breadcrumb />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

@@ -1,0 +1,17 @@
+.breadcrumb-item {
+    text-transform: capitalize;
+}
+
+
+.breadcrumb-item a {
+    color: black;
+    text-decoration: none;
+}
+
+.breadcrumb {
+    margin-bottom: 2rem;
+}
+
+.breadcrumb-end {
+    color: gray;
+}
